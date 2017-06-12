@@ -1,17 +1,30 @@
 function [ plane, direction, traceMismatch,slipDirAngle] = slip_trace_FCC(imgfile, ebsdfile,n)
 %SLIP_TRACE Takes in an SEM image file and EBSD data from a sample
 %containing slip traces and identifies the slip traces selected graphically
-%by the user.
+%by the user.  The n most likely slip systems are returned 
+%(if n is unspecified it will return the 3 most likely).
+
 %   The slip plane is identified by comparing the direction formed by the
 %   slip trace to the slip traces tha would be produced by the slip planes
 %   known to be active in Zr.
-% Returns: plane - the 3 most likely slip planes
+
+% Returns: Listed below are the variables that get returned when the code
+% is run.
+
+%         plane - the n most likely slip planes
+
 %         direction - the slip directions
+
 %         traceMismatch - the angle (in degrees) between the user selected
 %         slip trace and theoretical slip trace based on crystal symmetry
+
 %         slipDirAngle - the angle (in degrees) that the slip direction
 %         points out of the SEM image plane.  If this angle is 0 then this
 %         slip system cannot produce visible slip traces in the image.
+
+% Example: Below is how to call the function.
+
+% [plane,direction,traceMismatch,slipDirAngle]=slip_trace_FCC('imagefile.tif','ebsdmap.ctf',3)
 
 
 %Set n to 3 if not entered by the user.

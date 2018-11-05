@@ -69,7 +69,7 @@ line=Miller(ori*line,grain.CS);
 implaneNormal=Miller(ori*zvector,grain.CS,'hkl');
 
 
-%Define possible slip planes and slip directions for Zr
+%Define possible slip planes and slip directions for FCC structure
 sPlane=symmetrise(Miller(1,1,1,grain.CS,'hkl'));
 
 burgers=symmetrise(Miller(1,1,0,grain.CS,'uvw'),'antipodal');
@@ -101,9 +101,8 @@ end
 activePlanes=allPlanes(top);
 
 %Loop through list of 3 most likely slip planes.  For each one, calculate
-%the possible slip directions (using <a> or <c+a> type burgers vector
-%where appropriate).  Save the slip direction that has the largers
-%component pointing out of the SEM image plane (since slip
+%the possible slip directions.  Save the slip direction that has the
+%largest component pointing out of the SEM image plane (since slip
 %directions that lay in the image plane can't produce visible slip traces).
 for i=1:length(top)
     [r,c] = find(isnull(dot_outer(vector3d(activePlanes(i)),vector3d(burgers))));
